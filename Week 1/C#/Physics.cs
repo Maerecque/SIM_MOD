@@ -9,7 +9,6 @@ public class Physics : MonoBehaviour
     public int stretch;
     public Vector3 Velocity;
     public int mass;
-    public Vector3 startForce;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +24,15 @@ public class Physics : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        Force = -stretch * transform.position - 1 * Velocity;
+        Force = -stretch * transform.position - 1 * Velocity; //Voor veerbeweging:stretch = 10, mass = 1
         Acceleration = Force / mass;
         Velocity += Acceleration * Time.deltaTime;
         transform.position += Velocity * Time.deltaTime;
+
+        // Force = -stretch * transform.position + 0 * Velocity;  //Voor rotatie: stretch = 10, mass = 1, Velocity.x = 30
+        // Acceleration = Force / mass;
+        // Velocity += Acceleration * Time.deltaTime;
+        // transform.position += Velocity * Time.deltaTime;
+
     }
 }
