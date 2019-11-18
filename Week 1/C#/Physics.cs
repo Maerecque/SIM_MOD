@@ -25,6 +25,7 @@ public class Physics : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         Force = -stretch * transform.position - 1 * Velocity;
         Acceleration = Force / mass;
         Velocity += Acceleration * Time.deltaTime;
