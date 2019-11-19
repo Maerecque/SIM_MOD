@@ -17,7 +17,7 @@ def forward_euler():
         #schrijf hier code voor Euler-integratie
         t[step+1] = t[step] + h
         v[step+1] = v[step] - friction * v[step] - stretch * x[step]
-        print(v[step])
+
         x[step+1] = x[step] + v[step] * h
     return t,x,v
 
