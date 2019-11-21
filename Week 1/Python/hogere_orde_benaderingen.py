@@ -3,14 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def func(x, y):
-    return y
+# def func(x, y):
+#     return y
 
 
 def heun(h, x0, y0, end):
     def asol(x):
         return math.exp(x)
-
     yasol = np.vectorize(asol)
 
     x = np.arange(0.0, end + h, h)
@@ -18,9 +17,9 @@ def heun(h, x0, y0, end):
     y[0] = y0
 
     for i in range(1, x.size):
-        y_intermediate = y[i - 1] + h * func(x[i - 1], y[i - 1])
-
-        y[i] = y[i - 1] + (h / 2.0) * (func(x[i - 1], y[i - 1]) + func(x[i], y_intermediate))
+        y_intermediate = y[i - 1] + h * y[i - 1]
+        y[i] = y[i - 1] + (h / 2.0) * (y[i - 1] + y_intermediate)
+        
     plt.plot(x, y, 'r-', label='Heun')
     plt.plot(x, yasol(x), 'b-', label='Actual')
 
@@ -35,7 +34,7 @@ def euler(x0, y, h, end):
     all_x = [x0]
     all_y = [y]
     while x0 < end:
-        y = y + h * func(x0, y)
+        y = y + h * y
         x0 = x0 + h
 
         all_x.append(x0)
@@ -45,7 +44,7 @@ def euler(x0, y, h, end):
     # Printing approximation
     print("Euler's Method solution at x = ", end, " is ", "%.6f" % y)
 
-stepsize = 100
+stepsize = 5
 x0 = 0
 y0 = 1
 end = 1.0
