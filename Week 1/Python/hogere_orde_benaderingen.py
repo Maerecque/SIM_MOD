@@ -2,15 +2,10 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-# def func(x, y):
-#     return y
-
-
 def heun(h, x0, y0, end):
-    def asol(x):
+    def make_exponent(x):
         return math.exp(x)
-    yasol = np.vectorize(asol)
+    exp_vectorised = np.vectorize(make_exponent)
 
     x = np.arange(0.0, end + h, h)
     y = np.zeros(x.size)
@@ -23,7 +18,7 @@ def heun(h, x0, y0, end):
     plt.plot(x, y, 'r-', label='Heun')
     plt.plot(x, yasol(x), 'b-', label='Actual')
 
-    print("Actual solution at x = ", x[-1], " is ", "%.6f\n------" % yasol(x)[-1])
+    print("Actual solution at x = ", x[-1], " is ", "%.6f\n------" % exp_vectorised(x)[-1])
     print("Heun's Method solution at x = ", x[-1], " is ", "%.6f" % y[-1])
 
 
