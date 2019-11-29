@@ -11,17 +11,9 @@ def salt(steps, speed_out=6):
     times = [0]
 
     for step in range(steps):
-        #in
-        total_water += going_in
-        total_salt += salt_going_in * going_in
-        concentration_salt = total_salt/total_water
+        total_salt += (salt_going_in * going_in) - (total_salt / total_water * going_out)
 
-        #out
-        total_water -= going_out
-        total_salt -= concentration_salt * going_out
-        concentration_salt = total_salt / total_water
-
-        amount.append(concentration_salt)
+        amount.append(total_salt)
         times.append(step)
 
     return amount, times
